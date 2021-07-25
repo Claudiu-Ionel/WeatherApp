@@ -1,0 +1,38 @@
+#registration-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  font-size: 20px;
+}
+
+.reg-section {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.reg-section label {
+  position: absolute;
+  left: -130px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  min-width: 125px;
+}
+.reg-section input {
+  height: 30px;
+  width: 250px;
+  padding: 5px;
+  font-size: 20px;
+}
+
+.button {
+  width: fit-content;
+  padding: 10px;
+}
