@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import Axios from 'axios';
-import './Register.css';
+import './Form.css';
 const Register = () => {
-  const [regButtonOn, setRegButtonOn] = useState(false);
+  // const [regButtonOn, setRegButtonOn] = useState(false);
   const [username, setUsername] = useState(null);
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
@@ -99,9 +99,7 @@ const Register = () => {
           }}
         />
       </section>
-      <button disabled={regButtonOn} className="button">
-        Register{' '}
-      </button>
+      <button className="button">Register </button>
       <section className="reg-section">{errMsg}</section>
     </form>
   );
