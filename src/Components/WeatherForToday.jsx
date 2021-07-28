@@ -1,38 +1,53 @@
-
+import { useState } from "react";
 
 function WeatherForToday() {
   // getting user's location:
+  let [latitude, setLatitude] = useState(0);
+  let [longitude, setLongitude] = useState(0);
+
   function getLocation() {
     navigator.geolocation.getCurrentPosition((position) => {
-      let userLocation = [position.coords.latitude, position.coords.longitude];
-      console.log(userLocation);
+      setLatitude(position.coords.latitude);
+      setLongitude(position.coords.longitude);
     });
   }
   getLocation();
 
-//   let url = `http://api.openweathermap.org/data/2.5/weather?lat=${userLocation[0]}&lon=${userLocation[1]}&appid=${process.env.REACT_APP_API_KEY}`;
-    let url = `http://api.openweathermap.org/data/2.5/weather?q=Moscow&units=metric&appid=${process.env.REACT_APP_API_KEY}`;
+  // setting the URL params:
+  let cityName = "Stockholm";
+  let url = "";
+  function composeURL(lat, long) {
+    if (lat === 0 && long === 0) {
+      url = `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${process.env.REACT_APP_API_KEY}`;
+    } else {
+      url = `http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${process.env.REACT_APP_API_KEY}`;
+    }
+  }
+  composeURL(latitude, longitude);
 
+  // get data from the weather API and inject it into HTML elements:
   async function getData() {
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
         let weatherInfo = Object.values(data);
         console.log(weatherInfo);
-        document.querySelector('.titleCity').innerHTML = "Your city is " + weatherInfo[11];
-        document.querySelector('.temp_now').innerHTML = "Temperature: " + Math.floor(weatherInfo[3].temp) + '°C';
-        document.querySelector('.feelsLike_now').innerHTML = "Feels like: " + Math.floor(weatherInfo[3].feels_like) + '°C';
+        document.querySelector(".titleCity").innerHTML =
+          "Your city is " + weatherInfo[11];
+        document.querySelector(".temp_now").innerHTML =
+          "Temperature: " + Math.floor(weatherInfo[3].temp) + "°C";
+        document.querySelector(".feelsLike_now").innerHTML =
+          "Feels like: " + Math.floor(weatherInfo[3].feels_like) + "°C";
       });
   }
-
   getData();
 
   return (
     <article className="weatherForToday">
-      <h1 className='titleCity'>Loading city...</h1>
-      <section className='temp'>
-        <p className='temp_now'>Temperature: </p>
-        <p className='feelsLike_now'>Feels like: </p>
+      <h1 className="titleCity">Loading city...</h1>
+      <section className="temp">
+        <p className="temp_now">Temperature: </p>
+        <p className="feelsLike_now">Feels like: </p>
       </section>
     </article>
   );
