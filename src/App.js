@@ -7,7 +7,7 @@ require('dotenv').config();
 function App() {
   return (
     <main className="App">
-      <Register />
+      {/* <Register /> */}
       {/* <Login /> */}
       <WeatherForToday />
     </main>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 function WeatherForToday() {
   // getting user's location:
@@ -14,8 +14,8 @@ function WeatherForToday() {
   getLocation();
 
   // setting the URL params:
-  let cityName = "Stockholm";
-  let url = "";
+  let cityName = 'Stockholm';
+  let url = '';
   function composeURL(lat, long) {
     if (lat === 0 && long === 0) {
       url = `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${process.env.REACT_APP_API_KEY}`;
@@ -32,16 +32,15 @@ function WeatherForToday() {
       .then((data) => {
         let weatherInfo = Object.values(data);
         console.log(weatherInfo);
-        document.querySelector(".titleCity").innerHTML =
-          "Your city is " + weatherInfo[11];
-        document.querySelector(".temp_now").innerHTML =
-          "Temperature: " + Math.floor(weatherInfo[3].temp) + "°C";
-        document.querySelector(".feelsLike_now").innerHTML =
-          "Feels like: " + Math.floor(weatherInfo[3].feels_like) + "°C";
+        document.querySelector('.titleCity').innerHTML = 'Your city is ' + weatherInfo[11];
+        document.querySelector('.temp_now').innerHTML =
+          'Temperature: ' + Math.floor(weatherInfo[3].temp) + '°C';
+        document.querySelector('.feelsLike_now').innerHTML =
+          'Feels like: ' + Math.floor(weatherInfo[3].feels_like) + '°C';
       });
   }
   getData();
-
+  console.log(longitude, latitude);
   return (
     <article className="weatherForToday">
       <h1 className="titleCity">Loading city...</h1>
