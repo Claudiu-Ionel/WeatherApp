@@ -54,7 +54,7 @@ const Login = () => {
         <input
           type="text"
           name="username"
-          id="username"
+          id="log-username"
           required
           onChange={(e) => {
             inputControl(e, setLogUsername);
@@ -66,7 +66,7 @@ const Login = () => {
         <input
           type="password"
           name="password"
-          id="password"
+          id="log-password"
           required
           onChange={(e) => {
             inputControl(e, setLogPassword);

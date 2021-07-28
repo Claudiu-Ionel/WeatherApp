@@ -68,7 +68,7 @@ const Register = () => {
         <input
           type="text"
           name="username"
-          id="username"
+          id="reg-username"
           required
           onChange={(e) => {
             inputControl(e, setUsername);
@@ -80,7 +80,7 @@ const Register = () => {
         <input
           type="email"
           name="email"
-          id="email"
+          id="reg-email"
           required
           onChange={(e) => {
             inputControl(e, setEmail);
@@ -92,7 +92,7 @@ const Register = () => {
         <input
           type="password"
           name="password"
-          id="password"
+          id="reg-password"
           required
           onChange={(e) => {
             inputControl(e, setPassword);

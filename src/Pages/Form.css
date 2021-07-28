@@ -40,3 +40,27 @@
   width: fit-content;
   padding: 10px;
 }
+#cities-form {
+  position: relative;
+}
+.city-list {
+  position: absolute;
+  top: 25px;
+  left: 50px;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 200px;
+  height: 200px;
+  overflow: auto;
+}
+.city-list span {
+  display: flex;
+  justify-content: flex-start;
+  cursor: pointer;
+}
+.city-list span:hover {
+  background: coral;
+  color: white;
+}
