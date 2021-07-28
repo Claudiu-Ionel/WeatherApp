@@ -1,20 +1,41 @@
-import React from 'react';
 
-function weatherForToday(props) {
-    let url = "http://api.openweathermap.org/data/2.5/weather?q=Krasnodar&units=metric&appid=ec840d6f7116ad6409efbbf3a64fe27b";
 
-    function getData() {
-    
-        fetch(url)
-      .then(response => response.json())
-      .then(data => console.log(data));
-    }
-    
-    getData(url);
+function WeatherForToday() {
+  // getting user's location:
+  function getLocation() {
+    navigator.geolocation.getCurrentPosition((position) => {
+      let userLocation = [position.coords.latitude, position.coords.longitude];
+      console.log(userLocation);
+    });
+  }
+  getLocation();
 
-    return <article className="weatherForToday">
+//   let url = `http://api.openweathermap.org/data/2.5/weather?lat=${userLocation[0]}&lon=${userLocation[1]}&appid=${process.env.REACT_APP_API_KEY}`;
+    let url = `http://api.openweathermap.org/data/2.5/weather?q=Moscow&units=metric&appid=${process.env.REACT_APP_API_KEY}`;
 
+  async function getData() {
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        let weatherInfo = Object.values(data);
+        console.log(weatherInfo);
+        document.querySelector('.titleCity').innerHTML = "Your city is " + weatherInfo[11];
+        document.querySelector('.temp_now').innerHTML = "Temperature: " + Math.floor(weatherInfo[3].temp) + '°C';
+        document.querySelector('.feelsLike_now').innerHTML = "Feels like: " + Math.floor(weatherInfo[3].feels_like) + '°C';
+      });
+  }
+
+  getData();
+
+  return (
+    <article className="weatherForToday">
+      <h1 className='titleCity'>Loading city...</h1>
+      <section className='temp'>
+        <p className='temp_now'>Temperature: </p>
+        <p className='feelsLike_now'>Feels like: </p>
+      </section>
     </article>
+  );
 }
 
-export default weatherForToday;
+export default WeatherForToday;

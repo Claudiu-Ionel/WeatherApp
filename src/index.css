@@ -11,3 +11,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* the weather info blocks: */
+.weatherForToday {
+  border: solid 3px tomato;
+  background: lightslategrey;
+}
+
+.temp {
+  border: solid greenyellow 2px;
+  margin: 3px;
+}
