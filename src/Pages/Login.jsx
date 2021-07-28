@@ -32,7 +32,14 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      console.log(logUsername, logPassword);
+      await Axios.post('http://localhost:3001/login', {
+        username: logUsername,
+        password: logPassword,
+      }).then((response) => {
+        setErrMsg(response.data);
+        setLogUsername(null);
+        setLogPassword(null);
+      });
     } catch (error) {
       console.log(error);
     }

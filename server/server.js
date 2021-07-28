@@ -38,12 +38,22 @@ app.post('/register', (req, res) => {
 
 app.post('/login', (req, res) => {
   const { username, password } = req.body;
-
-  db.query('SELECT id, username from users u WHERE u.username = ? AND u.password = ?', [username, password], (err, result) => {
+  db.query('SELECT username, password from users u WHERE u.username = ?', username, (err, result) => {
     if (err) {
       res.send(err);
+    }
+
+    if (result.length > 0) {
+      const dbPassword = result[0]?.password
+      bcrypt.compare(password, dbPassword).then((match) => {
+        if (!match) {
+          res.send("Wrong Password")
+        } else {
+          res.send("user logged in!")
+        }
+      })
     } else {
-      res.send(result)
+      res.send("user not found")
     }
   })
 })
