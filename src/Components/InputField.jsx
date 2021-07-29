@@ -2,10 +2,16 @@ import Axios from 'axios';
 import React from 'react';
 import { useEffect, useState } from 'react';
 import '../Pages/Form.css';
+import { useGlobalState } from '../App';
+
 const InputField = ({ list, setState }) => {
-  const [cityName, setCityName] = useState(null);
   const [cityList, setCityList] = useState(null);
   const [filteredCities, setFilteredCities] = useState(null);
+  const cityListDiv = document.getElementById('city-list');
+  const citiesInput = document.getElementById('cities-input');
+  const globalState = useGlobalState();
+  const setCityName = globalState.setCity;
+
   const fetchCities = async () => {
     try {
       const fetchCities = await Axios.get('http://localhost:3002/cities');
@@ -17,36 +23,39 @@ const InputField = ({ list, setState }) => {
       console.log(err);
     }
   };
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+    console.log(citiesInput.value);
+    setCityName(citiesInput.value);
+    citiesInput.value = null;
+  };
   const filterCities = (e) => {
     e.preventDefault();
     const filterValue = e.target.value;
+
     if (filterValue?.length > 0) {
+      cityListDiv.style.display = 'flex';
       const filteredCities = cityList.filter((city) => {
         return city.toLowerCase().includes(filterValue.toLowerCase());
       });
       setFilteredCities(filteredCities);
     } else {
+      cityListDiv.style.display = 'none';
       setFilteredCities(null);
     }
   };
   const setInputValue = (e) => {
     e.preventDefault();
-    let citiesInput = document.getElementById('cities-input');
     citiesInput.value = e.target.innerHTML;
     setFilteredCities(null);
+    cityListDiv.style.display = 'none';
   };
   useEffect(() => {
     fetchCities();
   }, []);
-  console.log(cityName);
+
   return (
-    <form
-      id="cities-form"
-      onSubmit={(e) => {
-        e.preventDefault();
-        setCityName(e.target.value);
-      }}
-    >
+    <form id="cities-form" onSubmit={(e) => onSubmitHandler(e)}>
       <label htmlFor="cities">Cities: </label>
       <input
         type="text"
@@ -57,7 +66,7 @@ const InputField = ({ list, setState }) => {
       />
 
       <button>Search</button>
-      <div className="city-list">
+      <div id="city-list">
         {filteredCities?.map((city) => {
           return <span onClick={(e) => setInputValue(e)}>{city}</span>;
         })}
