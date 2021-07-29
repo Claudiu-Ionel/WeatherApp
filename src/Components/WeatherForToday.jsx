@@ -43,13 +43,33 @@ function WeatherForToday() {
       .then((response) => response.json())
       .then((data) => {
         let weatherInfo = Object.values(data);
-        console.log(weatherInfo);
         document.querySelector('.titleCity').innerHTML = 'Your city is ' + weatherInfo[11];
         document.querySelector('.temp_now').innerHTML =
-          'Temperature: ' + Math.floor(weatherInfo[3]?.temp) + '°C';
+          Math.floor(weatherInfo[3]?.temp) + '°C';
         document.querySelector('.feelsLike_now').innerHTML =
           'Feels like: ' + Math.floor(weatherInfo[3]?.feels_like) + '°C';
+        let weatherDesc = weatherInfo[1];
+        document.querySelector('.weatherNowDesc').innerHTML = weatherDesc[0]?.main;
+
+        // extracting the icons:
+        let iconCode = '';
+        if (weatherDesc[0]?.main === 'Clouds') {
+          iconCode = '04d';
+        } else if (weatherDesc[0]?.main === 'Clear') {
+          iconCode = '01d';
+        } else if (weatherDesc[0]?.main === 'Snow') {
+          iconCode = '13d';
+        } else if (weatherDesc[0]?.main === 'Rain') {
+          iconCode = '09d';
+        } else if (weatherDesc[0]?.main === 'Thunderstorm' || 'Drizzle') {
+          iconCode ='11d';
+        } else {
+          iconCode = '50d';
+        }
+        let iconSrcURL = `http://openweathermap.org/img/wn/${iconCode}@2x.png`;
+        document.querySelector('.weatherIcon').src= iconSrcURL;
       });
+      
   }
 
   console.log(longitude, latitude);
@@ -57,8 +77,12 @@ function WeatherForToday() {
   return (
     <article className="weatherForToday">
       <h1 className="titleCity">Loading city...</h1>
-      <section className="temp">
-        <p className="temp_now">Temperature: </p>
+      <section className='weatherNowSummary'>
+        <span className="temp_now"></span>
+        <img className='weatherIcon' src='' alt='' />
+        <span className='weatherNowDesc'></span>
+      </section>
+      <section className="feelsLike_container">
         <p className="feelsLike_now">Feels like: </p>
       </section>
     </article>

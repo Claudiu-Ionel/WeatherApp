@@ -28,7 +28,7 @@ function App() {
       <AppContext.Provider value={globalState}>
         {/* <Register /> */}
         {/* <Login /> */}
-        <InputField />
+        {/* <InputField /> */}
         <WeatherForToday />
       </AppContext.Provider>
     </main>

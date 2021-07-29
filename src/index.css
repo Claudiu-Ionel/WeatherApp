@@ -18,7 +18,16 @@ code {
   background: lightslategrey;
 }
 
-.temp {
+.feelsLike_container {
   border: solid greenyellow 2px;
   margin: 3px;
+}
+
+.weatherNowSummary {
+  border: 3px yellow solid;
+  margin: 3px;
+}
+
+.weatherNowSummary span {
+  border: 2px red solid;
 }
