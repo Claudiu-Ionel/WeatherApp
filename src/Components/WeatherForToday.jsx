@@ -12,7 +12,10 @@ function WeatherForToday() {
     });
   }
   getLocation();
-
+  useEffect(() => {
+    composeURL(latitude, longitude);
+    getData();
+  }, [latitude, longitude]);
   // setting the URL params:
   // const [cityName, setCityName] = useState('Stockholm');
   // const [url, setUrl] = useState('');
@@ -25,7 +28,6 @@ function WeatherForToday() {
       url = `http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${process.env.REACT_APP_API_KEY}`;
     }
   }
-  composeURL(latitude, longitude);
 
   // get data from the weather API and inject it into HTML elements:
   async function getData() {
@@ -41,7 +43,7 @@ function WeatherForToday() {
           'Feels like: ' + Math.floor(weatherInfo[3].feels_like) + '°C';
       });
   }
-  getData();
+
   console.log(longitude, latitude);
   return (
     <article className="weatherForToday">
