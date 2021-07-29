@@ -8,8 +8,8 @@ require('dotenv').config();
 function App() {
   return (
     <main className="App">
-      <Register />
-      <Login />
+      {/* <Register /> */}
+      {/* <Login /> */}
       <WeatherForToday />
       {/* <InputField /> */}
     </main>

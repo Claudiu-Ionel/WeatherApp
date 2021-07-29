@@ -2,7 +2,8 @@ import Axios from 'axios';
 import React from 'react';
 import { useEffect, useState } from 'react';
 import '../Pages/Form.css';
-const InputField = (list) => {
+const InputField = ({ list, setState }) => {
+  const [cityName, setCityName] = useState(null);
   const [cityList, setCityList] = useState(null);
   const [filteredCities, setFilteredCities] = useState(null);
   const fetchCities = async () => {
@@ -37,11 +38,13 @@ const InputField = (list) => {
   useEffect(() => {
     fetchCities();
   }, []);
+  console.log(cityName);
   return (
     <form
       id="cities-form"
       onSubmit={(e) => {
-        console.log(e);
+        e.preventDefault();
+        setCityName(e.target.value);
       }}
     >
       <label htmlFor="cities">Cities: </label>

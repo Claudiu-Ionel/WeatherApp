@@ -42,6 +42,7 @@
 }
 #cities-form {
   position: relative;
+  padding: 10px;
 }
 .city-list {
   position: absolute;

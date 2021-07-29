@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function WeatherForToday() {
   // getting user's location:
@@ -14,6 +14,8 @@ function WeatherForToday() {
   getLocation();
 
   // setting the URL params:
+  // const [cityName, setCityName] = useState('Stockholm');
+  // const [url, setUrl] = useState('');
   let cityName = 'Stockholm';
   let url = '';
   function composeURL(lat, long) {
