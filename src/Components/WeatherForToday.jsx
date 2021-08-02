@@ -4,9 +4,12 @@ import { useGlobalState } from '../App';
 function WeatherForToday() {
   const globalState = useGlobalState();
   const city = globalState.city;
+  const setCity = globalState.setCity;
+  const userAgreement = globalState.userAgreement;
+
   // getting user's location:
-  let [latitude, setLatitude] = useState(0);
-  let [longitude, setLongitude] = useState(0);
+  const [latitude, setLatitude] = useState(0);
+  const [longitude, setLongitude] = useState(0);
 
   function getLocation() {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -14,23 +17,26 @@ function WeatherForToday() {
       setLongitude(position.coords.longitude);
     });
   }
-  getLocation();
-  useEffect(() => {
-    composeURL(latitude, longitude);
-    getData();
-  }, [latitude, longitude]);
 
   useEffect(() => {
-    setLatitude(0);
-    setLongitude(0);
-  }, [city]);
+    if (userAgreement === true) {
+      getLocation();
+      composeURL(latitude, longitude);
+      getData();
+    }
+    if (userAgreement === false) {
+      composeURL(latitude, longitude);
+      getData();
+    }
+  }, [userAgreement, latitude, longitude]);
+
   // setting the URL params:
   // const [cityName, setCityName] = useState('Stockholm');
   // const [url, setUrl] = useState('');
 
   let url = '';
   function composeURL(lat, long) {
-    if (lat === 0 && long === 0) {
+    if (userAgreement === false) {
       url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${process.env.REACT_APP_API_KEY}`;
     } else {
       url = `http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${process.env.REACT_APP_API_KEY}`;
@@ -44,8 +50,7 @@ function WeatherForToday() {
       .then((data) => {
         let weatherInfo = Object.values(data);
         document.querySelector('.titleCity').innerHTML = 'Your city is ' + weatherInfo[11];
-        document.querySelector('.temp_now').innerHTML =
-          Math.floor(weatherInfo[3]?.temp) + '°C';
+        document.querySelector('.temp_now').innerHTML = Math.floor(weatherInfo[3]?.temp) + '°C';
         document.querySelector('.feelsLike_now').innerHTML =
           'Feels like: ' + Math.floor(weatherInfo[3]?.feels_like) + '°C';
         let weatherDesc = weatherInfo[1];
@@ -62,25 +67,23 @@ function WeatherForToday() {
         } else if (weatherDesc[0]?.main === 'Rain') {
           iconCode = '09d';
         } else if (weatherDesc[0]?.main === 'Thunderstorm' || 'Drizzle') {
-          iconCode ='11d';
+          iconCode = '11d';
         } else {
           iconCode = '50d';
         }
         let iconSrcURL = `http://openweathermap.org/img/wn/${iconCode}@2x.png`;
-        document.querySelector('.weatherIcon').src= iconSrcURL;
+        document.querySelector('.weatherIcon').src = iconSrcURL;
       });
-      
   }
 
-  console.log(longitude, latitude);
-  console.log(city);
+  console.log(latitude, longitude);
   return (
     <article className="weatherForToday">
       <h1 className="titleCity">Loading city...</h1>
-      <section className='weatherNowSummary'>
+      <section className="weatherNowSummary">
         <span className="temp_now"></span>
-        <img className='weatherIcon' src='' alt='' />
-        <span className='weatherNowDesc'></span>
+        <img className="weatherIcon" src="" alt="" />
+        <span className="weatherNowDesc"></span>
       </section>
       <section className="feelsLike_container">
         <p className="feelsLike_now">Feels like: </p>

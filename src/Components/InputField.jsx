@@ -28,6 +28,7 @@ const InputField = ({ list, setState }) => {
     console.log(citiesInput.value);
     setCityName(citiesInput.value);
     citiesInput.value = null;
+    cityListDiv.style.display = 'none';
   };
   const filterCities = (e) => {
     e.preventDefault();
@@ -35,7 +36,7 @@ const InputField = ({ list, setState }) => {
 
     if (filterValue?.length > 0) {
       cityListDiv.style.display = 'flex';
-      const filteredCities = cityList.filter((city) => {
+      const filteredCities = cityList?.filter((city) => {
         return city.toLowerCase().includes(filterValue.toLowerCase());
       });
       setFilteredCities(filteredCities);

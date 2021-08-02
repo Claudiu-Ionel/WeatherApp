@@ -2,8 +2,8 @@ import './App.css';
 import Register from './Pages/Register';
 import Login from './Pages/Login.jsx'
 import WeatherForToday from './Components/WeatherForToday';
-import InputField from './Components/InputField';
 import { createContext, useContext, useState } from 'react';
+import UserAgreement from './Components/UserAgreement/UserAgreement';
 
 export const AppContext = createContext();
 
@@ -16,16 +16,22 @@ export function useGlobalState() {
 require('dotenv').config();
 
 function App() {
-  const [city, setCity] = useState('Stockholm');
-
+  const [city, setCity] = useState("Stockholm");
+  const [userAgreement, setUserAgreement] = useState(null)
+  const [whiteBlock, setWhiteBlock] = useState(true);
   const globalState = {
     city,
-    setCity
+    setCity,
+    userAgreement,
+    setUserAgreement,
+    whiteBlock,
+    setWhiteBlock
   };
-  console.log(city);
   return (
     <main className="App">
       <AppContext.Provider value={globalState}>
+        <div className={whiteBlock ? "white-block on" : "white-block off"}></div>
+        <UserAgreement />
         {/* <Register /> */}
         {/* <Login /> */}
         {/* <InputField /> */}
