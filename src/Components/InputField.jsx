@@ -11,7 +11,7 @@ const InputField = ({ list, setState }) => {
   const citiesInput = document.getElementById('cities-input');
   const globalState = useGlobalState();
   const setCityName = globalState.setCity;
-
+  const setUserAgreement = globalState.setUserAgreement;
   const fetchCities = async () => {
     try {
       const fetchCities = await Axios.get('http://localhost:3002/cities');
@@ -27,6 +27,7 @@ const InputField = ({ list, setState }) => {
     e.preventDefault();
     console.log(citiesInput.value);
     setCityName(citiesInput.value);
+    setUserAgreement(false);
     citiesInput.value = null;
     cityListDiv.style.display = 'none';
   };

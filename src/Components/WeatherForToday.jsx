@@ -28,7 +28,7 @@ function WeatherForToday() {
       composeURL(latitude, longitude);
       getData();
     }
-  }, [userAgreement, latitude, longitude]);
+  }, [userAgreement, latitude, longitude, city]);
 
   // setting the URL params:
   // const [cityName, setCityName] = useState('Stockholm');
