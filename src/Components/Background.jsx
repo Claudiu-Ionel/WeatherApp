@@ -86,19 +86,19 @@ function Background() {
           return (
             <div
               className={
-                bgCategory == "Clear"
+                bgCategory === "Clear"
                   ? "bg bgClear"
-                  : bgCategory == "Clouds"
+                  : bgCategory === "Clouds"
                   ? "bg bgClouds"
-                  : bgCategory == "Mist"
+                  : bgCategory === "Mist"
                   ? "bg bgMist"
-                  : bgCategory == "Rain"
+                  : bgCategory === "Rain"
                   ? "bg bgMist"
-                  : bgCategory == "Drizzle"
+                  : bgCategory === "Drizzle"
                   ? "bg bgDrizzle"
-                  : bgCategory == "Snow"
+                  : bgCategory === "Snow"
                   ? "bg bgSnow"
-                  : bgCategory == "Thunderstorm"
+                  : bgCategory === "Thunderstorm"
                   ? "bg bgThunderstorm"
                   : "bg"
               }

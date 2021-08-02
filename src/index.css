@@ -16,14 +16,15 @@ code {
     monospace;
 }
 
-#cities-form, .weatherForToday {
-  z-index: 2;
+#cities-form {
+  z-index: 3;
 }
 
 /* the weather info blocks: */
 .weatherForToday {
   border: solid 3px tomato;
   background: lightslategrey;
+  z-index: 2;
 }
 
 .feelsLike_container {
