@@ -1,9 +1,10 @@
+import { createContext, useContext, useState } from 'react';
 import './App.css';
 import Register from './Pages/Register';
-import Login from './Pages/Login.jsx'
+import Login from './Pages/Login.jsx';
 import WeatherForToday from './Components/WeatherForToday';
 import InputField from './Components/InputField';
-import { createContext, useContext, useState } from 'react';
+import Background from './Components/Background';
 
 export const AppContext = createContext();
 
@@ -30,6 +31,7 @@ function App() {
         {/* <Login /> */}
         {/* <InputField /> */}
         <WeatherForToday />
+        <Background />
       </AppContext.Provider>
     </main>
   );
