@@ -1,50 +1,34 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useGlobalState } from '../App';
 
 function WeatherForToday() {
   const globalState = useGlobalState();
   const city = globalState.city;
-  const setCity = globalState.setCity;
   const userAgreement = globalState.userAgreement;
 
   // getting user's location:
   const [latitude, setLatitude] = useState(0);
   const [longitude, setLongitude] = useState(0);
 
-  function getLocation() {
+  const getLocation = () => {
     navigator.geolocation.getCurrentPosition((position) => {
       setLatitude(position.coords.latitude);
       setLongitude(position.coords.longitude);
     });
-  }
-
-  useEffect(() => {
-    if (userAgreement === true) {
-      getLocation();
-      composeURL(latitude, longitude);
-      getData();
-    }
+  };
+  const composeURL = useCallback(() => {
+    let url = '';
     if (userAgreement === false) {
-      composeURL(latitude, longitude);
-      getData();
+      url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${process.env.REACT_APP_API_KEY}`;
+      return url;
+    } else {
+      url = `http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${process.env.REACT_APP_API_KEY}`;
+      return url;
     }
   }, [userAgreement, latitude, longitude, city]);
 
-  // setting the URL params:
-  // const [cityName, setCityName] = useState('Stockholm');
-  // const [url, setUrl] = useState('');
-
-  let url = '';
-  function composeURL(lat, long) {
-    if (userAgreement === false) {
-      url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${process.env.REACT_APP_API_KEY}`;
-    } else {
-      url = `http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${process.env.REACT_APP_API_KEY}`;
-    }
-  }
-
-  // get data from the weather API and inject it into HTML elements:
-  async function getData() {
+  const getData = useCallback(async () => {
+    const url = composeURL();
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
@@ -74,9 +58,25 @@ function WeatherForToday() {
         let iconSrcURL = `http://openweathermap.org/img/wn/${iconCode}@2x.png`;
         document.querySelector('.weatherIcon').src = iconSrcURL;
       });
-  }
+    console.log('Function Called');
+  }, [composeURL]);
 
-  console.log(latitude, longitude);
+  useEffect(() => {
+    if (userAgreement === true) {
+      getLocation();
+      getData();
+    }
+    if (userAgreement === false) {
+      getData();
+    }
+  }, [userAgreement, longitude, latitude, city, composeURL, getData]);
+
+  // setting the URL params:
+  // const [cityName, setCityName] = useState('Stockholm');
+  // const [url, setUrl] = useState('');
+
+  // get data from the weather API and inject it into HTML elements:
+
   return (
     <article className="weatherForToday">
       <h1 className="titleCity">Loading city...</h1>
