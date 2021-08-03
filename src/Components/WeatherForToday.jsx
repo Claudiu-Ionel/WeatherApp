@@ -49,7 +49,7 @@ function WeatherForToday() {
       .then((response) => response.json())
       .then((data) => {
         let weatherInfo = Object.values(data);
-        document.querySelector('.titleCity').innerHTML = 'Your city is ' + weatherInfo[11];
+        document.querySelector('.titleCity').innerHTML = weatherInfo[11];
         document.querySelector('.temp_now').innerHTML = Math.floor(weatherInfo[3]?.temp) + '°C';
         document.querySelector('.feelsLike_now').innerHTML =
           'Feels like: ' + Math.floor(weatherInfo[3]?.feels_like) + '°C';
@@ -81,11 +81,13 @@ function WeatherForToday() {
     <article className="weatherForToday">
       <h1 className="titleCity">Loading city...</h1>
       <section className="weatherNowSummary">
-        <span className="temp_now"></span>
-        <img className="weatherIcon" src="" alt="" />
-        <span className="weatherNowDesc"></span>
+        <p className="temp_now"></p>
       </section>
       <section className="feelsLike_container">
+        <figure>
+          <img className="weatherIcon" src="" alt="" />
+          <span className="weatherNowDesc"></span>
+        </figure>
         <p className="feelsLike_now">Feels like: </p>
       </section>
     </article>
