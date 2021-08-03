@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from 'react';
 import './App.css';
-import Register from './Pages/Register';
-import Login from './Pages/Login.jsx';
+// import Register from './Pages/Register';
+// import Login from './Pages/Login.jsx';
 import WeatherForToday from './Components/WeatherForToday';
 import InputField from './Components/InputField'
 import UserAgreement from './Components/UserAgreement/UserAgreement';

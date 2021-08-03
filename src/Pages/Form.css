@@ -40,14 +40,48 @@
   width: fit-content;
   padding: 10px;
 }
+
 #cities-form {
   position: relative;
   padding: 10px;
+  z-index: 3;
+  background: rgba(0, 0, 0, 0.7);
+  margin-bottom: 10px;
+  width: 400px;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  border-radius: 0 0 3% 3%;
+  position: relative;
+  top: -300px;
+}
+#cities-form label {
+  color: #fff;
+}
+
+#cities-form input,
+select,
+textarea {
+  margin-left: 5px;
+  background: #000;
+  color: #fff;
+  padding: 2px;
+  border: solid #fff 1px;
+  height: 18px;
+}
+
+#cities-form button {
+  background: #000;
+  border: solid #fff 1px;
+  margin-left: 4px;
+  height: 23px;
+  color: #fff;
 }
 #city-list {
   position: absolute;
-  top: 25px;
-  left: 50px;
+  top: 420px;
+  left: auto;
   margin-top: 10px;
   display: none;
   flex-direction: column;

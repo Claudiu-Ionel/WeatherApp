@@ -4,51 +4,14 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
-#cities-form {
-  z-index: 3;
-  background: rgba(0, 0, 0, 0.7);
-  margin-bottom: 10px;
-  width: 400px;
-  height: 400px;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  border-radius: 0 0 3% 3%;
-  position: relative;
-  top: -300px;
-}
-
-#cities-form label {
-  color: #fff;
-}
-
-#cities-form input, select, textarea {
-  margin-left: 5px;
-  background: #000;
-  color: #fff;
-  padding: 2px;
-  border: solid #fff 1px;
-  height: 18px;
-}
-
-#cities-form button {
-  background: #000;
-  border: solid #fff 1px;
-  margin-left: 4px;
-  height: 23px;
-  color: #fff;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
 /* the weather info blocks: */
@@ -161,6 +124,12 @@ code {
   background-image: url('./images/Thunderstorm/cooper-baumgartner-1N8iqSsn7ls-unsplash.jpg');
 }
 
-.bgClear, .bgClouds, .bgMist, .bgRain, .bgDrizzle, .bgSnow, .bgThunderstorm {
+.bgClear,
+.bgClouds,
+.bgMist,
+.bgRain,
+.bgDrizzle,
+.bgSnow,
+.bgThunderstorm {
   background-size: cover;
 }

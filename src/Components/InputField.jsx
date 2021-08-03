@@ -1,14 +1,14 @@
 import Axios from 'axios';
 import React from 'react';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import '../Pages/Form.css';
 import { useGlobalState } from '../App';
 
-const InputField = ({ list, setState }) => {
+const InputField = () => {
   const [cityList, setCityList] = useState(null);
   const [filteredCities, setFilteredCities] = useState(null);
-  const cityListDiv = document.getElementById('city-list');
-  const citiesInput = document.getElementById('cities-input');
+  const cityListDiv = useRef(null);
+  const citiesInput = useRef(null);
   const globalState = useGlobalState();
   const setCityName = globalState.setCity;
   const setUserAgreement = globalState.setUserAgreement;
@@ -25,32 +25,32 @@ const InputField = ({ list, setState }) => {
   };
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    console.log(citiesInput.value);
-    setCityName(citiesInput.value);
+    console.log(citiesInput.current.value);
+    setCityName(citiesInput.current.value);
     setUserAgreement(false);
-    citiesInput.value = null;
-    cityListDiv.style.display = 'none';
+    citiesInput.current.value = null;
+    cityListDiv.current.style.display = 'none';
   };
   const filterCities = (e) => {
     e.preventDefault();
     const filterValue = e.target.value;
 
     if (filterValue?.length > 0) {
-      cityListDiv.style.display = 'flex';
+      cityListDiv.current.style.display = 'flex';
       const filteredCities = cityList?.filter((city) => {
         return city.toLowerCase().includes(filterValue.toLowerCase());
       });
       setFilteredCities(filteredCities);
     } else {
-      cityListDiv.style.display = 'none';
+      cityListDiv.current.style.display = 'none';
       setFilteredCities(null);
     }
   };
   const setInputValue = (e) => {
     e.preventDefault();
-    citiesInput.value = e.target.innerHTML;
+    citiesInput.current.value = e.target.innerHTML;
     setFilteredCities(null);
-    cityListDiv.style.display = 'none';
+    cityListDiv.current.style.display = 'none';
   };
   useEffect(() => {
     fetchCities();
@@ -65,12 +65,17 @@ const InputField = ({ list, setState }) => {
         id="cities-input"
         required
         onChange={(e) => filterCities(e)}
+        ref={citiesInput}
       />
 
       <button>Search</button>
-      <div id="city-list">
-        {filteredCities?.map((city) => {
-          return <span onClick={(e) => setInputValue(e)}>{city}</span>;
+      <div id="city-list" ref={cityListDiv}>
+        {filteredCities?.map((city, index) => {
+          return (
+            <span key={index} onClick={(e) => setInputValue(e)}>
+              {city}
+            </span>
+          );
         })}
       </div>
     </form>
