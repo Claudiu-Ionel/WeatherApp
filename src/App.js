@@ -5,6 +5,7 @@ import './App.css';
 import WeatherForToday from './Components/WeatherForToday';
 import InputField from './Components/InputField'
 import UserAgreement from './Components/UserAgreement/UserAgreement';
+
 import Background from './Components/Background';
 
 export const AppContext = createContext();
