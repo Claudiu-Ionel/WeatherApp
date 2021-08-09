@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useGlobalState } from "../App";
 
 const backgroundImgArray = [
   {
@@ -68,7 +69,15 @@ const backgroundImgArray = [
 ];
 
 function Background() {
-  let [bgCategory, setBgCategory] = useState("Snow");
+  const globalState = useGlobalState();
+  const weather = globalState.weather;
+  const [bgCategory, setBgCategory] = useState("Snow");
+  
+  useEffect(() => {
+    if (weather) {
+      setBgCategory(weather);
+    }
+  }, [weather])
 
   return (
     <>

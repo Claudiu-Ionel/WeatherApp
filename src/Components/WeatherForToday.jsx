@@ -5,6 +5,7 @@ function WeatherForToday() {
   const globalState = useGlobalState();
   const city = globalState.city;
   const userAgreement = globalState.userAgreement;
+  const setWeather = globalState.setWeather;
 
   // getting user's location:
   const [latitude, setLatitude] = useState(0);
@@ -40,6 +41,8 @@ function WeatherForToday() {
         let weatherDesc = weatherInfo[1];
         document.querySelector('.weatherNowDesc').innerHTML = weatherDesc[0]?.main;
 
+        setWeather(weatherDesc[0].main);
+
         // extracting the icons:
         let iconCode = '';
         if (weatherDesc[0]?.main === 'Clouds') {
@@ -74,7 +77,7 @@ function WeatherForToday() {
   // setting the URL params:
   // const [cityName, setCityName] = useState('Stockholm');
   // const [url, setUrl] = useState('');
-
+  
   // get data from the weather API and inject it into HTML elements:
 
   return (

@@ -5,8 +5,8 @@ import './App.css';
 import WeatherForToday from './Components/WeatherForToday';
 import InputField from './Components/InputField'
 import UserAgreement from './Components/UserAgreement/UserAgreement';
-
 import Background from './Components/Background';
+
 
 export const AppContext = createContext();
 
@@ -22,13 +22,16 @@ function App() {
   const [city, setCity] = useState("Stockholm");
   const [userAgreement, setUserAgreement] = useState(null)
   const [whiteBlock, setWhiteBlock] = useState(true);
+  const [weather, setWeather] = useState(null);
   const globalState = {
     city,
     setCity,
     userAgreement,
     setUserAgreement,
     whiteBlock,
-    setWhiteBlock
+    setWhiteBlock,
+    weather,
+    setWeather
   };
   return (
     <main className="App">
