@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from 'react';
+import {Helmet} from "react-helmet";
 import './App.css';
 // import Register from './Pages/Register';
 // import Login from './Pages/Login.jsx';
@@ -35,6 +36,9 @@ function App() {
   };
   return (
     <main className="App">
+      <Helmet>
+        <title>The Weather App</title>
+      </Helmet>
       <AppContext.Provider value={globalState}>
         <div className={whiteBlock ? "white-block on" : "white-block off"}></div>
         <UserAgreement />

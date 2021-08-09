@@ -35,6 +35,7 @@ function WeatherForToday() {
       .then((data) => {
         let weatherInfo = Object.values(data);
         document.querySelector('.titleCity').innerHTML = weatherInfo[11];
+        document.querySelector('.titleCity').label = `The current city name is ${weatherInfo[11]}`;
         document.querySelector('.temp_now').innerHTML = Math.floor(weatherInfo[3]?.temp) + '°C';
         document.querySelector('.feelsLike_now').innerHTML =
           'Feels like: ' + Math.floor(weatherInfo[3]?.feels_like) + '°C';
@@ -60,6 +61,7 @@ function WeatherForToday() {
         }
         let iconSrcURL = `http://openweathermap.org/img/wn/${iconCode}@2x.png`;
         document.querySelector('.weatherIcon').src = iconSrcURL;
+        document.querySelector('.weatherIcon').alt = `The picture of tiny ${weatherDesc[0].main}`;
       });
     console.log('Function Called');
   }, [composeURL]);
