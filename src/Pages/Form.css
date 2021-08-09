@@ -48,13 +48,11 @@
   background: rgba(0, 0, 0, 0.7);
   margin-bottom: 10px;
   width: 400px;
-  height: 400px;
+
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  border-radius: 0 0 3% 3%;
-  position: relative;
-  top: -300px;
+  border-radius: 0px 0px 15px 15px;
 }
 #cities-form label {
   color: #fff;
@@ -80,7 +78,7 @@ textarea {
 }
 #city-list {
   position: absolute;
-  top: 420px;
+  top: 30px;
   left: auto;
   margin-top: 10px;
   display: none;
