@@ -64,7 +64,7 @@ function WeatherForToday() {
         document.querySelector('.weatherIcon').alt = `The picture of tiny ${weatherDesc[0].main}`;
       });
     console.log('Function Called');
-  }, [composeURL]);
+  }, [composeURL, setWeather]);
 
   useEffect(() => {
     if (userAgreement === true) {
@@ -79,7 +79,7 @@ function WeatherForToday() {
   // setting the URL params:
   // const [cityName, setCityName] = useState('Stockholm');
   // const [url, setUrl] = useState('');
-  
+
   // get data from the weather API and inject it into HTML elements:
 
   return (
