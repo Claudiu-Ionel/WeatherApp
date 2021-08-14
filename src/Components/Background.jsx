@@ -105,7 +105,7 @@ function Background() {
               }
               key={i.id}
             >
-              <section className="bgInfo">
+              <section className="bgInfo" aria-label="Links to background picture author and background picture location">
                 <a href={i.authorPath} className="bgAuthorname">
                   Author: {i.authorName}
                 </a>

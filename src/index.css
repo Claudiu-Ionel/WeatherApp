@@ -35,7 +35,7 @@ code {
   margin: 3px;
 }
 
-.feelsLike_container figure {
+.feelsLike_container div {
   align-items: center;
   display: flex;
   justify-content: center;

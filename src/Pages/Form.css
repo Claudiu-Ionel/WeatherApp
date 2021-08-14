@@ -1,58 +1,56 @@
 #registration-form,
 #login-form {
+  align-items: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 70%;
   font-size: 20px;
+  justify-content: center;
+  width: 70%;
 }
 
 .reg-section,
 .login-section {
-  position: relative;
+  align-items: center;
   display: none;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
   margin-bottom: 10px;
+  position: relative;
 }
 .reg-section label,
 .login-section label {
-  position: absolute;
-  left: -130px;
-
+  align-items: center;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  align-items: center;
+  left: -130px;
   min-width: 125px;
+  position: absolute;
 }
 .reg-section input,
 .login-section input {
-  height: 30px;
-  width: 250px;
-  padding: 5px;
   font-size: 20px;
+  height: 30px;
+  padding: 5px;
+  width: 250px;
 }
 
 .button {
-  width: fit-content;
   padding: 10px;
+  width: fit-content;
 }
 
 #cities-form {
-  position: relative;
-  padding: 10px;
-  z-index: 3;
+  align-items: flex-end;
   background: rgba(0, 0, 0, 0.7);
-  margin-bottom: 10px;
-  width: 400px;
-
+  border-radius: 0px 0px 15px 15px;
   display: flex;
   justify-content: center;
-  align-items: flex-end;
-  border-radius: 0px 0px 15px 15px;
+  margin-bottom: 10px;
+  padding: 10px;
+  position: relative;
+  width: 400px;
+  z-index: 3;
 }
 #cities-form label {
   color: #fff;
@@ -61,38 +59,41 @@
 #cities-form input,
 select,
 textarea {
-  margin-left: 5px;
   background: #000;
-  color: #fff;
-  padding: 2px;
   border: solid #fff 1px;
+  color: #fff;
   height: 18px;
+  margin-left: 5px;
+  padding: 2px;
 }
 
 #cities-form button {
   background: #000;
   border: solid #fff 1px;
-  margin-left: 4px;
-  height: 23px;
   color: #fff;
+  height: 23px;
+  margin-left: 4px;
 }
 #city-list {
-  position: absolute;
-  top: 30px;
-  left: auto;
-  margin-top: 10px;
+  background-color: white;
+  border-radius: 0 0 10px 10px;
+  border-top: none;
+  border: #000 solid 2px;
   display: none;
   flex-direction: column;
+  height: 100px;
   justify-content: flex-start;
-  width: 200px;
-  height: 200px;
+  left: auto;
+  margin-top: 10px;
   overflow: auto;
-  background-color: white;
+  position: absolute;
+  top: 30px;
+  width: 160px;
 }
 #city-list span {
+  cursor: pointer;
   display: flex;
   justify-content: flex-start;
-  cursor: pointer;
 }
 #city-list span:hover {
   background: coral;

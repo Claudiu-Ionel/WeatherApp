@@ -57,16 +57,17 @@ const InputField = () => {
   }, []);
 
   return (
-    <form id="cities-form" onSubmit={(e) => onSubmitHandler(e)}>
-      <label htmlFor="cities">Cities: </label>
-      <input
-        type="text"
-        name="cities"
-        id="cities-input"
-        required
-        onChange={(e) => filterCities(e)}
-        ref={citiesInput}
-      />
+    <form id="cities-form" onSubmit={(e) => onSubmitHandler(e)} aria-label="The form for typing the city name">
+      <label htmlFor="cities">Cities: 
+        <input
+          type="text"
+          name="cities"
+          id="cities-input"
+          required
+          onChange={(e) => filterCities(e)}
+          ref={citiesInput}
+        />
+      </label>
 
       <button>Search</button>
       <div id="city-list" ref={cityListDiv}>
